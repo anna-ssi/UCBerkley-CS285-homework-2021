@@ -34,6 +34,7 @@ class RNDModel(nn.Module, BaseExplorationModel):
         self.f = ptu.build_mlp(self.ob_dim, self.output_size, self.n_layers, self.size, init_method=init_method_1)
         self.f_hat = ptu.build_mlp(self.ob_dim, self.output_size, self.n_layers, self.size, init_method=init_method_2)
         
+        # updating only f_hat - the normal distribution model
         self.optimizer = self.optimizer_spec.constructor(
             self.f_hat.parameters(),
             **self.optimizer_spec.optim_kwargs
